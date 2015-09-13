@@ -1,0 +1,12 @@
+protocol: http
+hostname: localhost
+port: 9200
+
+maxAgeToDelete: 30
+maxAgeToArchive: 10
+maxAgeToOptimize: 1
+
+dateFormat: yyyy.MM.dd
+indexpattern:
+- test-logstash-
+- test-logstash-perfservlet-
