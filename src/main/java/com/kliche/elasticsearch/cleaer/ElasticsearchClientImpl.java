@@ -12,6 +12,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -84,7 +85,7 @@ public class ElasticsearchClientImpl implements ElasticsearchClient {
 	
 	@Override
 	public void optimize(String index) throws IOException {
-		HttpPost settingsOperation = new HttpPost(buildConnectionUrl() + index + SETTINGS_URL);
+		HttpPut settingsOperation = new HttpPut(buildConnectionUrl() + index + SETTINGS_URL);
 		CloseableHttpResponse resp = httpclient.execute(settingsOperation);
 		LOG.info("Settings operation status: " + resp.getStatusLine());
 		resp.close();
