@@ -24,13 +24,12 @@ public class App {
 
 	private static CleanerConfig getConfig() throws FileNotFoundException {
 		Constructor constructor = new Constructor(CleanerConfig.class);
-    	TypeDescription carDescription = new TypeDescription(CleanerConfig.class);
+    	TypeDescription typeDesc = new TypeDescription(CleanerConfig.class);
+    	typeDesc.putListPropertyType("indexpattern", String.class);
+    	constructor.addTypeDescription(typeDesc);
+    	Yaml yamlConfig = new Yaml(constructor);
     	
-    	carDescription.putListPropertyType("indexpattern", String.class);
-    	constructor.addTypeDescription(carDescription);
-    	Yaml yaml = new Yaml(constructor);
-    	
-    	CleanerConfig config = (CleanerConfig) yaml.load(new FileInputStream(new File("config.yaml")));
+    	CleanerConfig config = (CleanerConfig) yamlConfig.load(new FileInputStream(new File("config.yaml")));
 		return config;
 	}
 
