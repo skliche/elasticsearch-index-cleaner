@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/bin/sh
 
 curl -XPUT "http://localhost:9200/test-logstash-2015.09.03?pretty"
 curl -XPUT "http://localhost:9200/test-logstash-2015.09.12?pretty"
