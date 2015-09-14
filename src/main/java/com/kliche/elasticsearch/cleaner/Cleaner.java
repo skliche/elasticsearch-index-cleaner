@@ -24,6 +24,8 @@ public class Cleaner {
 	}
 	
 	public void clean() throws IOException, ParseException {
+		LOG.info("Starting cleanup job...");
+		
         List<String> indices = client.findAllIndices();
         LOG.info("Found the following indices: " + indices);
         
@@ -53,6 +55,8 @@ public class Cleaner {
 				wasHandled = true;
 			}
 		}
+        
+        LOG.info("Finished cleanup job...");
 	}
 	
 	private boolean indexMatchesPatternAndInterval(String candidateIndex, int days) {
