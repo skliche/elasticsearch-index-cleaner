@@ -27,6 +27,4 @@ public class App {
     	CleanerConfig config = (CleanerConfig) yamlConfig.load(new FileInputStream(new File("config.yaml")));
 		return config;
 	}
-
-	
 }
