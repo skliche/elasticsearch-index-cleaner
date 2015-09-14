@@ -16,4 +16,4 @@ After building using the 'mvn package' command, a jar and a sample config.yaml f
 
 # Running #
 
-In order to run the tool just execute 'java -jar elasticsearch-index-cleaner-0.0.1-SNAPSHOT.jar'. A log file 'cleaner.log' is created and gives further details on the execution of the tool.
+In order to run the tool just execute **java -jar elasticsearch-index-cleaner-0.0.1-SNAPSHOT.jar**. A log file **cleaner.log** is created and gives further details on the execution of the tool.
