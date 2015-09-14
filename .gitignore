@@ -1,6 +1,7 @@
 .project
 .classpath
 .settings/
+cleaner.log
 target/
 bin/
 dependency-reduced-pom.xml
