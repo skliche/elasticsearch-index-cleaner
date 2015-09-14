@@ -54,7 +54,7 @@
 					<archive>
 						<manifest>
 							<!-- Jar file entry point -->
-							<mainClass>com.kliche.elasticsearch.cleaer.App</mainClass>
+							<mainClass>com.kliche.elasticsearch.cleaner.App</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
