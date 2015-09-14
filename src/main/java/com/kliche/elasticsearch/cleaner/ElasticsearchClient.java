@@ -1,4 +1,4 @@
-package com.kliche.elasticsearch.cleaer;
+package com.kliche.elasticsearch.cleaner;
 
 import java.io.IOException;
 import java.util.List;
