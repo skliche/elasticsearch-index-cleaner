@@ -8,7 +8,6 @@ import java.text.ParseException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -23,11 +22,7 @@ public class App {
     }
 
 	private static CleanerConfig getConfig() throws FileNotFoundException {
-		Constructor constructor = new Constructor(CleanerConfig.class);
-    	TypeDescription typeDesc = new TypeDescription(CleanerConfig.class);
-    	typeDesc.putListPropertyType("indexpattern", String.class);
-    	constructor.addTypeDescription(typeDesc);
-    	Yaml yamlConfig = new Yaml(constructor);
+    	Yaml yamlConfig = new Yaml(new Constructor(CleanerConfig.class));
     	
     	CleanerConfig config = (CleanerConfig) yamlConfig.load(new FileInputStream(new File("config.yaml")));
 		return config;
