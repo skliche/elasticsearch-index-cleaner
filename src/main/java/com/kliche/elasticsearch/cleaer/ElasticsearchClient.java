@@ -3,6 +3,15 @@ package com.kliche.elasticsearch.cleaer;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The elasticsearch client interacts with the elasticsearch server using the REST API.
+ * It provides an interface for index maintenance. The implementation of the operations
+ * is inspired by the elasticsearch documentation on retireing data. 
+ * See https://www.elastic.co/guide/en/elasticsearch/guide/current/retiring-data.html
+ * 
+ * @author skliche
+ *
+ */
 public interface ElasticsearchClient {
 	/**
 	 * Returns a list of all indices present in the elasticsearch cluster.
