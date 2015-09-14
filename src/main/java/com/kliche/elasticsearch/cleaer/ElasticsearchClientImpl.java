@@ -27,7 +27,7 @@ public class ElasticsearchClientImpl implements ElasticsearchClient {
 	private static final String GET_ALL_INDICES_URL = "/_aliases?ignore_missing=true";
 	
 	private static final String OPTIMIZE_URL = "/_optimize?max_num_segments=1";
-	private static final String SETTINGS_URL = "/_settings?number_of_replicas=0";
+	private static final String SETTINGS_URL = "/_settings?number_of_replicas=0&index.routing.allocation.include.box_type=medium";
 	private static final String FLUSH_URL = "/_flush";
 	private static final String CLOSE_URL = "/_close";
 	
