@@ -7,6 +7,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,12 +18,12 @@ public class Cleaner {
 	
 	private ElasticsearchClient client;
 	private CleanerConfig config;
-	private SimpleDateFormat sdf; 
+	private DateTimeFormatter fmt;
 	
 	public Cleaner(CleanerConfig config) {
 		this.config = config;
 		client = new ElasticsearchClientImpl(config);
-		sdf = new SimpleDateFormat(config.getDateFormat());
+		fmt = DateTimeFormat.forPattern(config.getDateFormat());
 	}
 	
 	public void clean() throws IOException, ParseException {
@@ -69,11 +72,11 @@ public class Cleaner {
 				String datePart = candidateIndex.substring(configIndex.length());
 				
 				// parse the date
-				Date indexDate;
+				DateTime indexDate;
 				try {
-					indexDate = sdf.parse(datePart);
-				} catch (ParseException e) {
-					LOG.error("Could not parse the date part of index" + candidateIndex);
+					indexDate = fmt.parseDateTime(datePart);
+				} catch (IllegalArgumentException e) {
+					LOG.error("Could not parse date part of index " + candidateIndex);
 					return false;
 				}
 				
@@ -87,15 +90,7 @@ public class Cleaner {
 		return false;
 	}
 
-	private boolean isOlderThan(int days, Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, -days);
-		
-		Date currentDateMinusInterval = cal.getTime();
-		if(date.before(currentDateMinusInterval)) {
-			return true;			
-		} else {
-			return false;
-		}
+	private boolean isOlderThan(int days, DateTime dateToValidate) {
+		return dateToValidate.isBefore(new DateTime().minusDays(days));
 	}
 }
